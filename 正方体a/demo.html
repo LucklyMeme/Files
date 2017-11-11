@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			margin: 100px;
+			width: 200px;
+			height: 200px;
+			border: 10px solid #000;
+			position: relative;
+			-webkit-perspective:50000px;
+			-webkit-transform-style:preserve-3d;
+			transition:all 1s ease 0s;
+		}
+		div img{
+			position: absolute;
+			top: 0;
+			left: 0;
+		}
+		div img:nth-child(1){
+			-webkit-transform:translateZ(100px);
+			z-index: 4;
+		}
+		div img:nth-child(2){
+			-webkit-transform:rotateX(90deg) translateZ(100px);
+		}
+		div img:nth-child(3){
+			-webkit-transform:rotateX(180deg) translateZ(100px);
+		}
+		div img:nth-child(4){
+			-webkit-transform:rotateX(-90deg) translateZ(100px);
+		}
+		div img:nth-child(5){
+			-webkit-transform:rotateY(90deg) translateZ(100px);
+		}
+		div img:nth-child(6){
+			-webkit-transform:rotateY(-90deg) translateZ(100px);
+		}
+
+		div.show1{
+			-webkit-transform:none;
+		}
+		div.show2{
+			-webkit-transform:rotateX(-90deg);
+		}
+		div.show3{
+			-webkit-transform:rotateX(-180deg);
+		}
+		div.show4{
+			-webkit-transform:rotateX(-270deg);
+		}
+		div.show5{
+			-webkit-transform:rotateY(-90deg);
+		}
+		div.show6{
+			-webkit-transform:rotateY(90deg);
+		}
+		input{
+			width: 120px;
+			height: 120px;
+		}
+	</style>
+	<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+			function(){
+				$("input").click(
+					function(){
+						$("div").attr("class","show" + ($(this).index() + 1));
+					}
+				);
+
+				var now = 1;
+				function dongyici(){
+					if(now < 6){
+						now++;
+					}else{
+						now = 1;
+					}
+					$("div").attr("class","show" + now);
+				}
+				setInterval(dongyici, 1000);
+			}
+		);
+	</script>
+</head>
+<body>
+	<input type="button" value="点我">
+	<input type="button" value="点我">
+	<input type="button" value="点我">
+	<input type="button" value="点我">
+	<input type="button" value="点我">
+	<input type="button" value="点我">
+	<div class="show1">
+		<img src="1.png" alt="">
+		<img src="2.png" alt="">
+		<img src="3.png" alt="">
+		<img src="4.png" alt="">
+		<img src="5.png" alt="">
+		<img src="6.png" alt="">
+	</div>
+</body>
+</html>
