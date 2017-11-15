@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>今天天气不错</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    
+    #box {
+      padding: 20px;
+    }
+    
+    #box span {
+      display: inline-block;
+      width: 60px;
+      height: 30px;
+      line-height: 30px;
+      text-align: center;
+      border: 1px solid #000;
+      background-color: #c0eea2;
+      margin: 10px 0;
+    }
+    
+    #box span.current {
+      background-color: red;
+    }
+  </style>
+</head>
+<body>
+<button id="btn">点名</button>
+<div id="box">
+  <span class="current">张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+  <span>张三</span>
+</div>
+
+<script>
+  var btn=document.getElementById("btn");
+  var spans=box.children;
+  var timer=null;
+  var time=null;
+  var count=0;
+
+  for (var i = 0; i <spans .length; i++) {
+    btn.onclick=function () {
+        clearInterval(timer);
+        timer=setInterval(function(){
+          count=parseInt(Math.random()*(spans.length+1));
+          for (var i = 0; i < spans.length; i++) {
+            spans[i].className="";
+          }
+          spans[count].className="current";
+          time=setTimeout(function(){
+            clearInterval(timer);
+          },2000);
+
+        },50);
+      clearTimeout(time);
+    }
+  }
+
+
+</script>
+</body>
+</html>
