@@ -1,155 +1,233 @@
+### 准备开始
+---
+#### 学员反馈
 
+ 果然像老师说的，vue确实有一中豁然开朗的感觉。加分项一定要学好
+
+ bind绑定元素再简单说一下吧!!!
+    v-bind就是给属性赋值 @属性名="表达式"
+
+ 想涂宝贝了，好几天没看到了
+
+ 学好V U E，走遍天下都不怕！
+
+  老师，我们没有面向对象编程的思想咋办啊，面试的话这部分很重要。蓝瘦香菇。。。。。
+        编程的时候，能分代码就分代码，能抽取，能封装多想想怎么分
+
+  写练习时 v-for()里面的参数还是有点搞不清怎么用。 什么情况下用v-model ？
+        
+        数组v-for="(ele,index) in arr" :key="index"
+        对象v-for="(value,key,index) in obj" :key="index"
+
+    <input type="text" v-model="xxx">
+
+    在methods中
+        使用 this.xxx获取其值
+        当你在js部分需要获取到页面中元素的value时,给该元素加上v-model="xxx"
+            再通过this.xxx获取
+
+ v-bind的使用场景不太熟悉
+    动态的样式名 v-bind:class="动态的样式名"
+    动态的样式  v-bind:style="'background-color:' + myColor  "
+    动态的样式中的高度  v-bind:style="'height:' + myHeight  "
 #### 复习
-* 晚上练习
-    - 1:保证主线 -> 练习
-    - 2:将相关知识点记录到脑图中，案例不用一个个敲
-    - 3:非重点看一看就好
-    - 4:重重点：使用所学的做出东西来 -> 项目
+* vue启动步骤
+    - 1:引包
+    - 2:留坑<div id="app"></div>
+        + 在vue1.xxx中这个坑可以是body
+        + 在vue2.xxx中不能是body标签
+    - 3:启动vue `new Vue(options)`
+* options(选项)
+    - el:字符串或者DOM对象      -> 目的地
+    - data:函数return一个对象或者对象 -> 数据  M(Model)
+    - template: 字符串  -> 页面 V(View)
+    - methods: 函数 -> 功能
+* 指令
+    - v-model 双向数据绑定，给一个变量名，让页面元素value与之绑定
+    - v-text 双标签中使用,给元素的innerText赋值
+    - v-html 双标签中使用,给元素的innerHTML赋值
+    - v-if v-else 必须是邻居 
+        + 元素的插入和移除
+    - v-show 元素的隐藏与现实
+    - v-bind:属性名="表达式最终的结果||data中属性变量"
+        + 简写->   `:属性名`
+    - v-on:原生事件="表达式做一些行为||函数的调用"
+        + 简写->   `@原生事件`
+    - v-for="item in arr" :key="item.id"
+        + key用来告诉vue元素与DOM之间位置的关系
+        + 如果不告知，vue会自行计算，损耗性能
+* 坑点
+    - 在vue2.xxx中不能是body标签
+    - 在模板中只能有一个根节点
 
-#### node基础总复习
-* ES6常用
-    - 严格模式 是代码的约束
-        + 函数内this
-        + with语句
-    - ES6是代码功能的扩展  "use strict";
-    - let const var之间的区别， var会提升全局，其他的都是块级 {}
-        + 变量查找机制，就近原则，也能向上查找
-    - let 就是变量
-    - const 就是常量
-    - 模板字符串 ` 可以包含换行    ${变量.属性}`
-    - 函数扩展
-        - 字符串的3个
-            + 判断以什么开头、结尾、包含
-        - 数组的2个
-            + 找元素和找索引
-                * 返回值: find:元素或者undefine
-                    - findIndex: 索引或者-1
-    - 箭头函数本身没有this和arguments，会根据上级的function绑定
-    - Object.defineProperty(obj,属性名,options);   底层实现
-        + 作用是对于obj.属性名 的获取和设置进行操作
-    - babel是什么？ js语法转换器  ES2015/2016/2017/react]
-    - 如何区分node还是浏览器环境的js运行代码
-        + 判断是否有window等对象.....
-    - node组成部分
-        + 需要引入:node提供的核心对象
-        + 需要引入:引入的第三方模块或者我们自己写的模块
-        + 全局对象对象(拿来直接用)
-            * console、__dirname|filename、require、module、exports(module.exports的简写)、setTimeout、setInterval、process
-            * process.env 环境变量 是个对象
-            * process.argv 命令行参数  是个数组
-        + 核心对象
-            * fs 读写->  第三方包 fs-extra
-                - 这个包的特点是目录可以不存在，自动创建
-                - outputFile 加强版的writeFile
-                - ensureDir 确保目录存在  
-                - copy 复制
-                - remove 另外删除也相对有用一点，即时目录内有文件也能删除
-            * path
-                - 拼接并修正路径join
-                - 解析路径返回对象parse 
-                    + base属性可以修改-> 是文件全名xxx.xxx
-                - 解析对象返回字符串format
-            * querystring
-                - 解析键值对，返回对象  
-                - body-parser第三方中间件内部使用了其
-            * http
-                - 思想上，http就是客户端与服务器之间数据格式的约定
-                - 头行体
-                - 请求报文 
-                    + (客户端编程请求报文对象可写)
-                    + (服务端编程请求报文对象可读)
-                    + 头行体
-                - 响应报文  
-                    + (客户端编程响应报文对象可读)
-                    + (服务端编程响应报文对象可写)
-                    + 头行体
-                        * 头 1次和多次设置
-                        * (多次是为了方便循环调用，比如数组添加头)
-                        * 体 1次和多次设置
-                - node中也能作为客户端发送请求
-    - express
-        * 创建服务器
-        *  1:引入对象支持
-        *  2:创建服务器
-        *  3:监听端口开启服务器
-        *  4:根据请求处理响应   
-    - 应用级中间件 `app.use`
-    - 路由级中间件 `router.请求方式(url,事);`
-        + 在最后写上 `.all('*')` 404找不到页面的处理
-    - 内置中间件
-        + URL:/public
-        + `app.use('/public',express.static('./public'));`
-            * 请求url是以/public开头，那么只有我这个中间件来处理，将你请求的url对应的文件资源返回给你
-    - 第三方中间件
-        + 解析post请求体数据、解析cookie、使用session
-        + 以上中间件都是为了在路由中，为业务实现而服务的
-        + 都需要在`app.use(router)` 的前面设置中间件位置
-    - 错误处理中间件
-        + 传递一个4个参数的函数, `next(err)` 触发
-        + 给用户一个错误且美好的体验
-    - 以上中间件都是独立的发生的一件事，为了在应用中产生效果，最终添加后到应用中间件队列中
-        + `app.use()`
-    - 参数获取
-        + url上的参数
-            * 查询字符串  req.query
-            * path方式  req.params
-        + post请求数据`body-parser`  => req.body
-    - mysql
-        + 连接池思想
-            * 避免频繁开关造成资源浪费
-            * 一个请求就维持一个连接，不合适
-            * 一次性创建数个连接，需要使用取出，使用完毕，放回
-            * 晚开早关(比如茅房)
+#### 今日重点
 
-```javascript
-function fun () {
-  if ( ) {
-   . . .
-  } else if ( ) {
-   . . .
-  }
-}
-var 会往上提，最高提到函数，没有函数就是全局
-let 严格按照大括号,块级来
+#### 组件
+* 可组件的部件
+    - 便于复用和维护
+    - 包含html + css + js内容
+
+#### render
+* new Vue 作用是启动Vue程序，而此时可以借助Vue程序完成一些简单的vue功能
+    - 但是这种方式不利于项目大的情况,（html+css+js）就多
+    - 转换为只启动，调用主体组件(html+css+js),主体组件未来会依赖其他组件，构成项目
+* render:c=>c(App)
 
 
-fs.remove('/tmp/myfile')
-.then(() => {
-  console.log('success!'); 成功后的回调函数
-})
-.catch(err => {
-  console.error(err); 异常后的回调函数
-})
+#### 使用子组件
+* 组件内声明子组件关系
+    - components是一个对象
+    - key是组件名,value是组件对象
+* 常见报错
+    - Unknown custom element: <my-header> - did you register the component correctly?
+    - 未知的自定义元素  <my-header>  
+    - 没有注册这个组件
+
+#### 父子组件属性
+* 父用子 
+    - 在父组件中 `components:{组件名:组件对象}  `
+* 子收父参数`props:['属性名']`
+  
 
 
-```
 
-#### node课程总结
-* 深入理解请求与响应的交互方式
-    - 头行体
-* 如何区分核心对象和第三方包
-    - package.json里面出现的包，就是第三方的，否则就是核心对象
-* 这么多包，怎么记得住名字和功能
-    - 项目中用到，用多自然记得
-    - 也可以查看package.json文件
-    - art-template 单用 -> 通过文件 + 数据 = html字符串内容
-    - express 服务器应用程序框架
-    - express-art-template 依赖art-template
-        + 专门为express提供的
-    - body-parser 解析post请求体数据
-    - fs-extra 文件操作增强
-        + 自动创建不存在的目录路径
-    - formidable
-        + 解析请求体数据 -> 包含文件
-        + 默认存储路径可以修改 form.uploadDir
-    - captchapng2
-        + 生成验证码
-    - express-session
-        + 操作session的中间件
-    - 恢复所有包
-        + npm i
-    
-#### 框架与包库的区别
-* 库 是我们调用其的函数代码
-* 框架 是我们的代码,被其调用运行
+#### 父子组件使用(父传子)
+* 1: 在子组件中 `props:['属性名']`
+* 2: 在父组件中 `<sub-vue 属性名="值"></sub-vue>`
+        + 常量: `属性名="值"`
+        + 变量: `:属性名="变量名"`
 
+#### 小总结
+* props 是父组件给你的数据
+* data是数据自己的数据
+* 加起来就是自己数据的总和
+* 在谁的template中使用的变量就是谁的data
+* 关于使用data中的属性
+   - 凡是template中直接用
+   - 凡是js中 this.
+
+
+#### 注册全局组件
+* `Vue.component(组件名,组件对象);`
+* 父组件无需声明，直接使用
+
+#### 过滤器
+* 过滤器:对数据进行添油加醋，改变显示
+* 组件内声明过滤器组件内有效
+    - `filters:{ 过滤器名:function(v,argv1,argv2){ return 显示内容;  }}`
+* 全局过滤器全局都有效
+    - `Vue.filter(过滤器名,function(v,argv1,argv2){ return 显示内容;  } )`
+    - 组件内过滤器与全局过滤器同名时
+        + 以组件内过滤器优先
+* 调用过滤器
+    - `{{数据 | 过滤器名(参数1,参数2)}}`
+
+#### 组件生命周期
+* 钩子就是事件
+* beforeCreate 创建之前
+* created 创建之后
+* beforeMount 装载前(将数据与页面放入真实的页面的)
+* mounted 装载后(将数据与页面放入真实的页面的)
+* beforeUpdate 更新数据前
+* updated 更新数据后
+* activated 激活组件
+* deactivated 组件停用
+* beforeDestroy 销毁之前
+* destroyed 销毁后
+
+* 总结
+    -  created和mounted各自的应用场景
+       + created适合操作(数据)  `v-if="true"`
+       + mounted适合操作(DOM)
+    - beforeUpdate 进行二次更新(不建议)
+    - mounted 获取最更新
+    - beforeDestroy、destroyed 
+        + `v-if="false"`
+    - activated激活  结合keep-alive   `v-if="true"`
+    - deactivated停用  结合keep-alive `v-if="false"`
+    - keep-alive组件:目的是缓存组件，减少频繁的创建销毁组件
+        + data/methods/components/filter
+       
+#### 获取DOM元素
+*  在元素上声明`ref="xxx"`
+*  在js中使用`this.$refs.span`
+*  js中能使用的地方是mounted
+
+#### watch
+* watch和页面change事件的区别
+    - change只能检测页面输入后的改变
+* watch监视的变量值的改变
+    - 1:页面改变影响内存变量值改变 -> 触发
+    - 2:通过js代码直接修改变量值改变 -> 触发
+* watch默认监视
+    - 基本数据类型值的改变
+    - 复杂数据类型引用的改变
+* 复杂数据类型应该使用深度监视(包含其属性)
+    - 'hero':{ deep:true,handler:function(newV,oldV){   }     }
+* watch可以一个个的监视data中的属性
+    - 基本数据类型就普通监视就可以
+    - 复杂数据类型、如数组、对象 需要深度监视
+
+#### computed(计算属性)
+* 增强版的watch ,可以结合多个监视的变量加入逻辑运算
+* computed是一个对象
+    - key是计算属性的名称，value是函数
+    - 函数的return是显示的结果
+* 但凡在函数中出现data相关的属性，则纳入监视范围
+* 如果一个属性更改与原值一致，则不触发函数运行
+* 也可以以对象方式导出多个值
+
+#### options
+* new Vue
+    - el 目的地,  字符串或者DOM元素
+    - template||render 选其一
+    - data 在小案例中可以使用
+    - template 页面视图,字符串
+    - render 渲染的内容,函数
+        + c=>c(App), 其中c(App)代表根据组件创建DOM
+        + 需要将其作为函数的返回值
+        + render接受根据组件创建的DOM，往el上放
+* template页面 （View）
+* data 是一个函数，return一个对象  数据（Model）
+* methods 是一个对象，key是函数名，value是函数体
+* components 是一个对象,key是组件名，value是组件对象
+* props 是一个数组,元素是字符串，作用是声明子组件接收参数的属性名
+* filter 是一个对象,key是过滤器名,value是函数，接受一个value,argv...
+    - return 最终显示结果
+    - 调用方式: `{{原数据|过滤器名(参数1...)}}`
+* watch 是一个对象,key是data中的属性名,value是函数(基本数据)
+    - 复杂数据 value是一个对象,`deep:true,handler:fn`
+* 父传子
+    - 1:子，声明接收参数的属性名 props
+    - 2:父，通过属性名传递参数
+        + 常量  不用绑定属性(v-bind)
+        + 变量  :属性名="变量名"
+* 全局API
+    - `Vue.component('组件名',组件对象);`
+    - `Vue.filter('过滤器名',过滤函数);`
+
+#### 子向父组件通信（获取组件对象）(扩展)
+* 0:`var vm = new Vue();`
+* 1:vm.$on('事件名',回调函数(形参1,形参2));
+* 2:vm.$emit('事件名',数据1,数据2)
+* 补充
+    - $once('事件名',fn) 只触发一次
+    - $off('事件名') 关闭事件
+
+#### 模块化
+* 问题:文件依赖顺序
+* 问题:同名变量命名冲突
+* 模块化编程来解决该问题
+    - commonjs中的模块定义
+    - 你是一个文件，就是一个模块
+    - 该模块可以依赖其他模块，也可以向外导出
+    - `依赖require,导出module.exports`
+
+#### 形态2
+* 首先全局安装webpack工具
+    - `npm i -g webpack`
+    - 构建代码,进入到命令行
+    - 输入 `webpack ./入口程序main.js ./出口程序build.js`
+    - 在html页面中引入build.js
+
+#### 案例:模块化英雄CRUD
